@@ -3,7 +3,7 @@
 // The website should display a new webpage after going to a new route in your webpage. (3) x
 // To be able to fetch data from the backend and display it on the web page. (4) x 
 // To be able to display data, using custom url parameters, from a npm module downloaded using the CLI. (4) x
-// You should be able to fetch new data after clicking on a button that requests new data from the server. (5)
+// You should be able to fetch new data after clicking on a button that requests new data from the server. (5) x
 
 const exp = require("express");
 
@@ -27,7 +27,7 @@ app.use("/api", api);
 app.use(exp.static("public"))
 
 app.get("/", (req, res) => {
-    const html = "<h1>fuck off </h1>"
+    const html = "<h1>Try a different path to find some spicy content: /hello, /color/colorofchoice, /pictures <br></h1>"
     res.send(html)
 });
 
@@ -42,14 +42,10 @@ app.get("/color/:color", (req, res) => {
 
 
 });
-app.get("/address", (req, res) => {
-    // const addresses = [];
-    // for(let i = 0; i < 20; i++){
-    //     addresses.push(faker.image.image(200, 200, false));
-    // }
+app.get("/pictures", (req, res) => {
 
-    const img = faker.image.image(200, 200, true)
-    const html = `<img src=${img}>`
+    const img = faker.image.sports(500, 500, false)
+    const html = `<h1>Randomly generated image</h1><img src=${img}> <br><button onClick="window.location.reload();">Refresh Page</button>`
     
     res.send(html);
     
