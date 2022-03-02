@@ -16,13 +16,15 @@ const morgan = require("morgan");
 
 app.use(morgan("dev"));
 
-
+const faker = require("@faker-js/faker");
 
 const api = require("./routes/api");
 
 app.use(exp.json());
 
 app.use("/api", api);
+
+app.use(exp.static("public"))
 
 app.get("/", (req, res) => {
     const html = "<h1>fuck off </h1>"
@@ -40,9 +42,16 @@ app.get("/color/:color", (req, res) => {
 
 
 });
+app.get("/address", (req, res) => {
+    const addresses = [];
+    for(let i = 0; i < 20; i++){
+        addresses.push(faker.address.city());
+    }
+    res.json(addresses);
 
+});
 
 app.listen(PORT, () =>{
-    console.log("port 1337 open for business")
+    console.log(`port ${PORT} open for business`)
 
 });
