@@ -12,10 +12,6 @@ const app = exp();
 
 const PORT = process.env.PORT || 5000;
 
-const morgan = require("morgan");
-
-app.use(morgan("dev"));
-
 const faker = require("@faker-js/faker").default;
 
 const api = require("./routes/api");
@@ -24,7 +20,6 @@ app.use(exp.json());
 
 app.use("/api", api);
 
-app.use(exp.static("public"))
 
 app.get("/", (req, res) => {
     const html = "<h1>Try a different path to find some spicy content: /hello, /color/colorofchoice, /pictures <br></h1>"
