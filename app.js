@@ -1,7 +1,7 @@
 
 // You should use express correctly to display a website on a server port number. (3) x
 // The website should display a new webpage after going to a new route in your webpage. (3) x
-// To be able to fetch data from the backend and display it on the web page. (4)
+// To be able to fetch data from the backend and display it on the web page. (4) x 
 // To be able to display data, using custom url parameters, from a npm module downloaded using the CLI. (4) x
 // You should be able to fetch new data after clicking on a button that requests new data from the server. (5)
 
@@ -16,7 +16,7 @@ const morgan = require("morgan");
 
 app.use(morgan("dev"));
 
-const faker = require("@faker-js/faker");
+const faker = require("@faker-js/faker").default;
 
 const api = require("./routes/api");
 
@@ -43,12 +43,16 @@ app.get("/color/:color", (req, res) => {
 
 });
 app.get("/address", (req, res) => {
-    const addresses = [];
-    for(let i = 0; i < 20; i++){
-        addresses.push(faker.address.city());
-    }
-    res.json(addresses);
+    // const addresses = [];
+    // for(let i = 0; i < 20; i++){
+    //     addresses.push(faker.image.image(200, 200, false));
+    // }
 
+    const img = faker.image.image(200, 200, true)
+    const html = `<img src=${img}>`
+    
+    res.send(html);
+    
 });
 
 app.listen(PORT, () =>{
